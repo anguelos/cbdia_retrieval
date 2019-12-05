@@ -43,7 +43,8 @@ class PageRegions(object):
         self.binary_io = False
 
     def __getitem__(self, item):
-        return self.ltrb[item, :]
+        l, t, r, b = self.ltrb[item, :]
+        return l, t, r, b
 
     def __len__(self):
         return self.ltrb.shape[0]
@@ -68,6 +69,9 @@ class PageRegions(object):
             return self.get_binary_filename()
         else:
             return self.get_text_filename()
+
+    def get_all_items(self):
+        return [self[n] for n in range(self.ltrb.shape[0])]
 
     def save(self):
         if self.binary_io:

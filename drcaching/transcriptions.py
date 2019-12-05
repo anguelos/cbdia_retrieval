@@ -79,7 +79,7 @@ class PageRegionTranscriptions(object):
         if self.binary_io:
             pickle.dump(open(self.get_binary_filename(), "w"), self.transcriptions)
         else:
-            json_save_np(self.transcriptions,self.get_text_filename())
+            json_save_np(self.transcriptions, self.get_text_filename())
 
     def get_binary_filename(self):
         return os.path.join(self.book_root, self.id+".pickle")

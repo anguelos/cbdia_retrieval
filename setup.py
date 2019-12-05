@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/anguelos/czeck_bavaria",
     packages=setuptools.find_packages(),
-    scripts=['bin/register_book'],
+    scripts=['bin/cb_register_book'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",

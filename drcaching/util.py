@@ -14,15 +14,15 @@ def strtime(t=None):
 
 def load_image(filename):
     log(9, "Loading", filename)
-    img=cv2.imread(str(filename),cv2.IMREAD_COLOR)
+    img = cv2.imread(str(filename),cv2.IMREAD_COLOR)
     assert img is not None
-    img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     return img
 
 
 def save_image(filename,img):
     log(9,"Saving",filename)
-    cv2.imwrite(str(filename),img)
+    cv2.imwrite(str(filename), img)
 
 
 def mkdir_p(dirname):
@@ -31,7 +31,8 @@ def mkdir_p(dirname):
 
 def log(level, *args, stream=sys.stderr):
     if level < log.log_level:
-        msg = " ".join([str(a) for a in args])
+        msg = time.asctime() + ": "
+        msg += " ".join([str(a) for a in args])
         stream.write(msg+"\n")
 log.log_level = 3
 
@@ -44,3 +45,11 @@ def json_save_np(np_obj, filename):
 def json_load_np(filename):
     fd = open(filename)
     return np.array(json.load(fd, ensure_ascii=False))
+
+
+def tic():
+    return float(int(time.time())/1000.0)
+
+
+def toc(t):
+    return float(int((time.time()-t)*1000)/1000.0)

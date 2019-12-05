@@ -10,7 +10,7 @@ import time
 from .util import mkdir_p, strtime
 from .page import Page
 from .regions import PageRegions
-from .annotations import PageRegionTranscriptions
+from .transcriptions import PageRegionTranscriptions
 
 
 def register_wordgt_page(params):
@@ -24,7 +24,7 @@ def register_wordgt_page(params):
         ltrb = data["rectangles_ltrb"]
         transcriptions = np.array([c[2:] if c[:2] == "W@" else "" for c in data["captions"]])
         regions = PageRegions.load_external(page.get_img_filename(), np.array(ltrb), "gtwords")
-        words = PageRegionTranscriptions.load_external(regions.filename,transcriptions)
+        words = PageRegionTranscriptions.load_external(regions.filename, transcriptions)
         words.save()
         regions.save()
     else:
