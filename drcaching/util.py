@@ -21,7 +21,7 @@ def load_image(filename):
 
 
 def save_image(filename,img):
-    log(9,"Saving",filename)
+    log(9, "Saving", filename)
     cv2.imwrite(str(filename), img)
 
 
@@ -34,6 +34,8 @@ def log(level, *args, stream=sys.stderr):
         msg = time.asctime() + ": "
         msg += " ".join([str(a) for a in args])
         stream.write(msg+"\n")
+
+
 log.log_level = 3
 
 
@@ -53,3 +55,7 @@ def tic():
 
 def toc(t):
     return float(int((time.time()-t)*1000)/1000.0)
+
+
+def get_all_subclasses(cls):
+    return set(cls.__subclasses__()).union([s for c in cls.__subclasses__() for s in get_all_subclasses(c)])

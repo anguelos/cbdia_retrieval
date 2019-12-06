@@ -23,7 +23,7 @@ def register_wordgt_page(params):
         data = json.load(open(gt_fname))
         ltrb = data["rectangles_ltrb"]
         transcriptions = np.array([c[2:] if c[:2] == "W@" else "" for c in data["captions"]])
-        regions = PageRegions.load_external(page.get_img_filename(), np.array(ltrb), "gtwords")
+        regions = PageRegions.load_external(page.get_img_filename(), np.array(ltrb), "GtWords")
         words = PageRegionTranscriptions.load_external(regions.filename, transcriptions)
         words.save()
         regions.save()
